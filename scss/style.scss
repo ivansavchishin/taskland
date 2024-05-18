@@ -1,0 +1,381 @@
+$textcolor: #000000;
+$background: #f8f8f8;
+$brandcolor: #df4e3c;
+$textoptioncolor: #8d8d8d;
+$validationcolor: #507a36;
+$errorcolor: #ff2307;
+
+@font-face{
+  font-family:"Poppinsbold";
+  src: url("../fonts/Poppinsbold.woff") format("woff");
+}
+@font-face{
+  font-family:"Noto Sans";
+  src: url("../fonts/notosansbold.woff") format("woff");
+}
+
+
+@mixin zag($fname, $fstyle, $size) {
+  font-size: $size;
+  font-weight: $fstyle;
+  font-family: $fname;
+}
+
+h1 {
+  @include zag("Noto Sans", 700, 50px);
+}
+h2 {
+  @include zag("Poppinsbold", 700, 50px);
+  color: #aeaeae;
+}
+
+h3 {
+  @include zag("Noto Sans", 600, 30px);
+}
+h4 {
+  @include zag("Noto Sans", 600, 25px);
+}
+h5 {
+  @include zag("Noto Sans", 500, 20px);
+}
+h6 {
+  @include zag("Noto Sans", 400, 17px);
+}
+
+body {
+  background-color: #f8f8f8;
+}
+
+.select {
+  margin: 0 auto;
+  position: relative;
+  width: 170px;
+  .is-active {
+    .select__body {
+      display: block;
+      border-radius: 0 0 15px 15px;
+      z-index: 2;
+    }
+    .select__header {
+      z-index: 3;
+      border-radius: 15px 15px 0 0;
+      border-bottom: 0px;
+    }
+  }
+}
+
+.select__header {
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  width: 170px;
+  height: 48px;
+  background: rgb(255, 255, 255);
+  .selected{
+    border: 1px solid rgb(223, 78, 60);
+  }
+}
+.select__current {
+  font-size: 18px;
+  line-height: 24px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+.select__icon {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  margin-left: auto;
+  text-align: center;
+  width: 40px;
+}
+
+.select__body {
+  display: none;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 95%;
+  width: 170px;
+  box-sizing: border-box;
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 15px;
+  border-top: 0;
+  box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.04);
+  background: rgb(255, 255, 255);
+}
+.select__item {
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px;
+}
+
+.select__item:hover {
+  color: $brandcolor;
+}
+
+.head {
+  background: no-repeat center center fixed;
+  background-color: #474747;
+  background-image: url("img/header.png");
+
+  background-size: cover;
+
+  height: auto;
+}
+.but {
+  box-sizing: border-box;
+  text-decoration: none;
+
+  background: none;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  transition: background-color 1s, color 1s;
+  width: 296px;
+  height: 56px;
+  margin: 70px 0 20px 0;
+
+  text-align: center;
+
+  color: #fff;
+  border: 2px solid #f8f8f8;
+  border-radius: 15px;
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  &:active {
+    background: none;
+    color: #f8f8f8;
+  }
+  &:disabled {
+    filter: grayscale(100%);
+    background: none;
+    color: #888;
+    border: 2px solid #888;
+  }
+}
+
+.btn1 {
+  width: 290px;
+  height: 48px;
+  color: $background;
+  background-color: $brandcolor;
+  border-radius: 15px;
+  border-color: $brandcolor;
+  &:disabled {
+    filter: grayscale(50%);
+    background-color: $brandcolor;
+    color: $background;
+    border: 2px solid $brandcolor;
+  }
+  &:hover {
+    border-color: $brandcolor;
+    background-color: $background;
+    color: $brandcolor;
+  }
+  &:active {
+    background-color: $brandcolor;
+    color: $background;
+  }
+}
+
+
+.con {
+  margin-top: 20px;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+  color: #8d8d8d;
+  padding-top: 5px;
+
+  height: 16px;
+
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+
+  line-height: 16px;
+}
+
+/* Hide the browser's default checkbox */
+.con input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: 2px solid #8d8d8d;
+  border-radius: 8px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.con input:checked ~ .checkmark {
+  background-color: $brandcolor;
+  border: 2px solid $brandcolor;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.con input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.con .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+.filter-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filter-group .select {
+  margin-right: 10px;
+
+}
+.filter-group button {
+  flex-grow: 2;
+}
+
+
+.car {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 295px;
+  height: 366px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px;
+  padding: 0;
+  background: #fff;
+  box-shadow: 0px 0px 18px rgba(68, 68, 68, 0.09);
+}
+.product_sold {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+.sold {
+  position: absolute;
+  width: 131px;
+  height: 75px;
+  left: 82px;
+  top: 63px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 75px;
+  color: #ffffff;
+}
+
+.imgcar {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.info {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 26px;
+  color: #8d8d8d;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  position: absolute;
+  left: 20px;
+  padding-top: 20px;
+  .about {
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 19px;
+    color: #8d8d8d;
+  }
+
+  a {
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 300;
+    color: #000000;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.info-price {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.price {
+  position: absolute;
+
+  left: 20px;
+  top: 304px;
+
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  color: #000000;
+}
+
+.new {
+  position: absolute;
+  width: 66px;
+  height: 24px;
+  left: 0px;
+  top: 176px;
+  border-radius: 0 15px 15px 0;
+  color: #fff;
+  text-align: center;
+  background: #000000;
+}
